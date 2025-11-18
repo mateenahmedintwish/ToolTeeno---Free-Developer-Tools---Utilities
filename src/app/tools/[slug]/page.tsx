@@ -12,6 +12,8 @@ import PasswordGeneratorTool from "@/app/components/PasswordGeneratorTool";
 import MarkdownPreviewTool from "@/app/components/MarkdownPreviewTool";
 import Base64ConverterTool from "@/app/components/Base64ConverterTool";
 import QrCodeGeneratorTool from "@/app/components/QrCodeGeneratorTool";
+import JsonToTomlTool from "@/app/components/JsonToTomlTool";
+import JsonToToonTool from "@/app/components/JsonToToonTool";
 
 // --- Tool Data and Static Generation ---
 type ToolData = {
@@ -21,7 +23,7 @@ type ToolData = {
 };
 
 const toolsData: Record<string, ToolData> = {
-    "qr-code-generator": {
+  "qr-code-generator": {
     name: "QR Code Generator",
     component: QrCodeGeneratorTool,
     description: "Generate QR codes for URLs, text, and more.",
@@ -35,6 +37,16 @@ const toolsData: Record<string, ToolData> = {
     name: "JSON Formatter",
     component: JsonFormatterTool,
     description: "Beautify and validate JSON data instantly.",
+  },
+  "json-to-toml": {
+    name: "JSON to TOML Converter",
+    component: JsonToTomlTool,
+    description: "Convert between JSON and TOML formats bidirectionally.",
+  },
+  "json-to-toon": {
+    name: "JSON to TOON Converter",
+    component: JsonToToonTool,
+    description: "Reduce LLM token usage by ~50% with compact TOON format.",
   },
   "url-encoder-decoder": {
     name: "URL Encoder/Decoder",
@@ -90,6 +102,8 @@ export async function generateMetadata({
     "qr-code-generator": "Generate QR codes instantly for URLs, text, vCards, WiFi, and more. Download as PNG, JPG, or SVG. Customize size, colors, and error correction level. Free QR code generator tool.",
     "color-picker": "Advanced color picker tool with HEX, RGB, and HSL support. Pick colors from images, generate color palettes, and copy values instantly. Perfect for designers and developers.",
     "json-formatter": "Format, validate, and beautify JSON data online. Features syntax highlighting, error detection, minification, and tree view. Free JSON formatter and validator tool.",
+    "json-to-toml": "Convert between JSON and TOML formats bidirectionally. Perfect for configuration files, Rust projects, and data transformation. Supports nested objects, arrays, and all data types. Free online converter.",
+    "json-to-toon": "Reduce LLM token usage by approximately 50% with TOON format. Eliminate JSON redundancy for efficient data serialization. Perfect for feeding large datasets to language models while minimizing token costs. Free converter tool.",
     "url-encoder-decoder": "Encode and decode URLs for safe transmission. Convert special characters to URL-safe format and vice versa. Essential tool for web developers working with query strings and APIs.",
     "password-generator": "Generate strong, secure passwords with customizable length and character sets. Create random passwords with uppercase, lowercase, numbers, and special characters. Free password generator.",
     "markdown-preview": "Real-time Markdown editor and preview tool. Write Markdown and see instant HTML rendering. Supports GitHub Flavored Markdown, syntax highlighting, and tables. Free online Markdown editor.",
@@ -100,6 +114,8 @@ export async function generateMetadata({
     "qr-code-generator": ["qr code generator", "create qr code", "free qr code", "qr code maker", "custom qr code", "download qr code"],
     "color-picker": ["color picker", "hex color picker", "rgb color picker", "color palette", "eyedropper tool", "color code"],
     "json-formatter": ["json formatter", "json validator", "beautify json", "json parser", "format json online", "json viewer"],
+    "json-to-toml": ["json to toml", "toml converter", "json toml converter", "config converter", "toml parser", "json parser", "configuration format"],
+    "json-to-toon": ["json to toon", "toon format", "llm token optimization", "reduce tokens", "compact json", "token efficient", "llm data format", "ai token savings"],
     "url-encoder-decoder": ["url encoder", "url decoder", "encode url", "decode url", "uri encoder", "percent encoding"],
     "password-generator": ["password generator", "strong password", "random password", "secure password", "password creator", "generate password"],
     "markdown-preview": ["markdown editor", "markdown preview", "markdown to html", "md editor", "markdown viewer", "github markdown"],

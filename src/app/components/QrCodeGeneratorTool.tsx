@@ -279,6 +279,130 @@ export default function QrCodeGeneratorTool() {
         Generate and customize QR codes for URLs, text, Wi-Fi details, and more.
       </p>
 
+      {/* API Documentation */}
+      <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-6">
+        <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+          <Settings className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+          Use as API
+        </h3>
+        <p className="text-gray-600 dark:text-gray-400 mb-4">
+          Generate QR codes programmatically via our REST API. Perfect for automating QR code generation in your applications!
+        </p>
+
+        <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 space-y-4">
+          <div>
+            <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">API Endpoint</h4>
+            <code className="block bg-white dark:bg-gray-800 px-4 py-2 rounded border border-gray-300 dark:border-gray-600 text-sm text-indigo-600 dark:text-indigo-400">
+              POST https://toolteeno.com/api/qr-code
+            </code>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Request Body</h4>
+            <pre className="bg-white dark:bg-gray-800 px-4 py-3 rounded border border-gray-300 dark:border-gray-600 text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`{
+  "text": "https://toolteeno.com",
+  "size": 512,
+  "bgColor": "#ffffff",
+  "fgColor": "#4f46e5",
+  "level": "M"
+}`}</code>
+            </pre>
+            <div className="text-sm text-gray-600 dark:text-gray-400 mt-2 space-y-1">
+              <p>• <strong>text</strong>: Content to encode (required, max 2000 chars)</p>
+              <p>• <strong>size</strong>: Image size in pixels (optional, 128-1024, default: 256)</p>
+              <p>• <strong>bgColor</strong>: Background hex color (optional, default: #ffffff)</p>
+              <p>• <strong>fgColor</strong>: QR code hex color (optional, default: #000000)</p>
+              <p>• <strong>level</strong>: Error correction L/M/Q/H (optional, default: M)</p>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Example Response</h4>
+            <pre className="bg-white dark:bg-gray-800 px-4 py-3 rounded border border-gray-300 dark:border-gray-600 text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`{
+  "success": true,
+  "config": {
+    "text": "https://toolteeno.com",
+    "size": 512,
+    "bgColor": "#ffffff",
+    "fgColor": "#4f46e5",
+    "level": "M"
+  },
+  "apiImageUrl": "https://api.qrserver.com/v1/..."
+}`}</code>
+            </pre>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">cURL Example</h4>
+            <pre className="bg-white dark:bg-gray-800 px-4 py-3 rounded border border-gray-300 dark:border-gray-600 text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`curl -X POST https://toolteeno.com/api/qr-code \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "text": "https://toolteeno.com",
+    "size": 512,
+    "fgColor": "#4f46e5"
+  }'`}</code>
+            </pre>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">JavaScript Example</h4>
+            <pre className="bg-white dark:bg-gray-800 px-4 py-3 rounded border border-gray-300 dark:border-gray-600 text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`fetch('https://toolteeno.com/api/qr-code', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    text: 'https://toolteeno.com',
+    size: 512,
+    fgColor: '#4f46e5'
+  })
+})
+.then(res => res.json())
+.then(data => {
+  console.log('QR Code URL:', data.apiImageUrl);
+});`}</code>
+            </pre>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Python Example</h4>
+            <pre className="bg-white dark:bg-gray-800 px-4 py-3 rounded border border-gray-300 dark:border-gray-600 text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`import requests
+
+response = requests.post(
+    'https://toolteeno.com/api/qr-code',
+    json={
+        'text': 'https://toolteeno.com',
+        'size': 512,
+        'fgColor': '#4f46e5'
+    }
+)
+result = response.json()
+print(result['apiImageUrl'])`}</code>
+            </pre>
+          </div>
+
+          <div className="bg-indigo-50 dark:bg-indigo-900/30 rounded-lg p-4 border border-indigo-200 dark:border-indigo-700">
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              <strong>💡 Error Correction Levels:</strong><br />
+              • <strong>L</strong> - Low (~7% correction)<br />
+              • <strong>M</strong> - Medium (~15% correction) - Recommended<br />
+              • <strong>Q</strong> - Quartile (~25% correction)<br />
+              • <strong>H</strong> - High (~30% correction) - Best for damaged codes
+            </p>
+          </div>
+
+          <div className="bg-green-50 dark:bg-green-900/30 rounded-lg p-4 border border-green-200 dark:border-green-700">
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              <strong>🎯 Free & No Rate Limits:</strong> This API is completely free to use with no authentication required. 
+              Use the returned <code className="bg-white dark:bg-gray-800 px-2 py-1 rounded">apiImageUrl</code> to get the actual QR code image!
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Hidden SVG QR Code for SVG downloads */}
       <div ref={svgRef} className="hidden">
         {text && !error && (

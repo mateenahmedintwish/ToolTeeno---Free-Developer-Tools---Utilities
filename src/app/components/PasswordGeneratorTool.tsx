@@ -235,6 +235,162 @@ export default function PasswordGeneratorTool() {
       <p className="mt-6 text-sm text-gray-500 dark:text-gray-400 text-center">
         A strong password should be long and combine different character types.
       </p>
+
+      {/* API Documentation */}
+      <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-6">
+        <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+          <Zap className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+          Use as API
+        </h3>
+        <p className="text-gray-600 dark:text-gray-400 mb-4">
+          Generate secure passwords programmatically via our REST API. Perfect for automation and integration into your applications!
+        </p>
+
+        <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 space-y-4">
+          <div>
+            <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">API Endpoint</h4>
+            <code className="block bg-white dark:bg-gray-800 px-4 py-2 rounded border border-gray-300 dark:border-gray-600 text-sm text-indigo-600 dark:text-indigo-400">
+              POST https://toolteeno.com/api/password
+            </code>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Request Body</h4>
+            <pre className="bg-white dark:bg-gray-800 px-4 py-3 rounded border border-gray-300 dark:border-gray-600 text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`{
+  "length": 16,
+  "uppercase": true,
+  "lowercase": true,
+  "numbers": true,
+  "symbols": true,
+  "count": 1
+}`}</code>
+            </pre>
+            <div className="text-sm text-gray-600 dark:text-gray-400 mt-2 space-y-1">
+              <p>• <strong>length</strong>: Password length (optional, 4-128, default: 16)</p>
+              <p>• <strong>uppercase</strong>: Include A-Z (optional, default: true)</p>
+              <p>• <strong>lowercase</strong>: Include a-z (optional, default: true)</p>
+              <p>• <strong>numbers</strong>: Include 0-9 (optional, default: true)</p>
+              <p>• <strong>symbols</strong>: Include !@#$%^&* (optional, default: true)</p>
+              <p>• <strong>count</strong>: Generate multiple passwords (optional, 1-50, default: 1)</p>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Example Response (Single)</h4>
+            <pre className="bg-white dark:bg-gray-800 px-4 py-3 rounded border border-gray-300 dark:border-gray-600 text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`{
+  "success": true,
+  "config": {
+    "length": 16,
+    "uppercase": true,
+    "lowercase": true,
+    "numbers": true,
+    "symbols": true,
+    "count": 1
+  },
+  "passwords": "aB3!xY7@mK9#pQ2$",
+  "entropy": "95.27",
+  "charPoolSize": 94
+}`}</code>
+            </pre>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Example Response (Multiple)</h4>
+            <pre className="bg-white dark:bg-gray-800 px-4 py-3 rounded border border-gray-300 dark:border-gray-600 text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`{
+  "success": true,
+  "config": { ... },
+  "passwords": [
+    "aB7mK2pQ9xYz3R4!",
+    "xR4nL8sT3wMk@9P#",
+    "pQ6mY1hJ9cVb$2X&"
+  ],
+  "entropy": "95.27",
+  "charPoolSize": 94
+}`}</code>
+            </pre>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">cURL Example</h4>
+            <pre className="bg-white dark:bg-gray-800 px-4 py-3 rounded border border-gray-300 dark:border-gray-600 text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`curl -X POST https://toolteeno.com/api/password \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "length": 20,
+    "uppercase": true,
+    "lowercase": true,
+    "numbers": true,
+    "symbols": true
+  }'`}</code>
+            </pre>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">JavaScript Example</h4>
+            <pre className="bg-white dark:bg-gray-800 px-4 py-3 rounded border border-gray-300 dark:border-gray-600 text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`fetch('https://toolteeno.com/api/password', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    length: 20,
+    uppercase: true,
+    lowercase: true,
+    numbers: true,
+    symbols: false,
+    count: 5
+  })
+})
+.then(res => res.json())
+.then(data => {
+  console.log('Passwords:', data.passwords);
+  console.log('Entropy:', data.entropy, 'bits');
+});`}</code>
+            </pre>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Python Example</h4>
+            <pre className="bg-white dark:bg-gray-800 px-4 py-3 rounded border border-gray-300 dark:border-gray-600 text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`import requests
+
+response = requests.post(
+    'https://toolteeno.com/api/password',
+    json={
+        'length': 20,
+        'uppercase': True,
+        'lowercase': True,
+        'numbers': True,
+        'symbols': False,
+        'count': 5
+    }
+)
+result = response.json()
+print('Passwords:', result['passwords'])
+print(f"Entropy: {result['entropy']} bits")`}</code>
+            </pre>
+          </div>
+
+          <div className="bg-indigo-50 dark:bg-indigo-900/30 rounded-lg p-4 border border-indigo-200 dark:border-indigo-700">
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              <strong>🔐 Security Features:</strong><br />
+              • Uses cryptographically secure random number generation (crypto.getRandomValues)<br />
+              • Entropy calculation included for password strength assessment<br />
+              • Character pool size provided for security analysis<br />
+              • At least one character from each selected type is guaranteed
+            </p>
+          </div>
+
+          <div className="bg-green-50 dark:bg-green-900/30 rounded-lg p-4 border border-green-200 dark:border-green-700">
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              <strong>💡 Free & No Rate Limits:</strong> This API is completely free to use with no authentication required. 
+              Generate single or bulk passwords for your applications!
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

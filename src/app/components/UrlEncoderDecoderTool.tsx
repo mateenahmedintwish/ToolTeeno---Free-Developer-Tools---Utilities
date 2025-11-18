@@ -136,6 +136,143 @@ export default function UrlEncoderDecoderTool() {
       <p className="mt-6 text-sm text-gray-500 dark:text-gray-400 text-center">
         Use Encode to prepare text for a URL (e.g., spaces to `%20`). Use Decode to read an encoded URL.
       </p>
+
+      {/* API Documentation Section */}
+      <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
+          API Access
+        </h3>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">
+          Use this tool programmatically via our REST API. Perfect for integrating URL encoding/decoding into your applications, scripts, or workflows.
+        </p>
+
+        {/* API Endpoint */}
+        <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
+          <h4 className="font-semibold text-gray-800 dark:text-white mb-2">Endpoint</h4>
+          <code className="text-sm text-indigo-600 dark:text-indigo-400 break-all">
+            POST https://toolteeno.com/api/url-encode
+          </code>
+        </div>
+
+        {/* Request Body */}
+        <div className="mb-6">
+          <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Request Body</h4>
+          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+            <pre className="text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`{
+  "text": "string",     // Required: Text or URL to encode/decode
+  "mode": "encode|decode" // Required: Operation mode
+}`}</code>
+            </pre>
+          </div>
+        </div>
+
+        {/* Response Examples */}
+        <div className="mb-6">
+          <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Example Response (Encode)</h4>
+          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+            <pre className="text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`{
+  "success": true,
+  "mode": "encode",
+  "input": "https://example.com/search?q=hello world",
+  "output": "https%3A%2F%2Fexample.com%2Fsearch%3Fq%3Dhello%20world"
+}`}</code>
+            </pre>
+          </div>
+        </div>
+
+        <div className="mb-6">
+          <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Example Response (Decode)</h4>
+          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+            <pre className="text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`{
+  "success": true,
+  "mode": "decode",
+  "input": "https%3A%2F%2Fexample.com%2Fsearch%3Fq%3Dhello%20world",
+  "output": "https://example.com/search?q=hello world"
+}`}</code>
+            </pre>
+          </div>
+        </div>
+
+        {/* cURL Example */}
+        <div className="mb-6">
+          <h4 className="font-semibold text-gray-800 dark:text-white mb-3">cURL Example</h4>
+          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+            <pre className="text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`curl -X POST https://toolteeno.com/api/url-encode \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "text": "Hello World! How are you?",
+    "mode": "encode"
+  }'`}</code>
+            </pre>
+          </div>
+        </div>
+
+        {/* JavaScript Example */}
+        <div className="mb-6">
+          <h4 className="font-semibold text-gray-800 dark:text-white mb-3">JavaScript/Fetch Example</h4>
+          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+            <pre className="text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`const response = await fetch('https://toolteeno.com/api/url-encode', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    text: 'https://example.com/search?q=hello world&lang=en',
+    mode: 'encode'
+  })
+});
+
+const data = await response.json();
+console.log(data.output);
+// Output: "https%3A%2F%2Fexample.com%2Fsearch%3Fq%3Dhello%20world%26lang%3Den"`}</code>
+            </pre>
+          </div>
+        </div>
+
+        {/* Python Example */}
+        <div className="mb-6">
+          <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Python Example</h4>
+          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+            <pre className="text-sm overflow-x-auto">
+              <code className="text-gray-800 dark:text-gray-200">{`import requests
+
+response = requests.post(
+    'https://toolteeno.com/api/url-encode',
+    json={
+        'text': 'user@example.com',
+        'mode': 'encode'
+    }
+)
+
+result = response.json()
+print(result['output'])
+# Output: "user%40example.com"`}</code>
+            </pre>
+          </div>
+        </div>
+
+        {/* Use Cases */}
+        <div className="p-4 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg">
+          <h4 className="font-semibold text-gray-800 dark:text-white mb-2">
+            Common Use Cases
+          </h4>
+          <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc list-inside">
+            <li>Encoding query parameters in URLs</li>
+            <li>Preparing text for URL transmission</li>
+            <li>Decoding URL parameters from query strings</li>
+            <li>Handling special characters in API requests</li>
+            <li>Processing form data submissions</li>
+          </ul>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-3">
+            This API is completely free to use with no rate limits or authentication required!
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

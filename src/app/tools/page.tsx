@@ -4,11 +4,11 @@ import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 // Mock imports for demonstration. You must install lucide-react (npm install lucide-react).
-import { Palette, Code, Link as LinkIcon, Lock, FileText, Binary, Zap, ChevronRight } from 'lucide-react';
+import { Palette, Code, Link as LinkIcon, Lock, FileText, Binary, Zap, ChevronRight, FileJson } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: "All Tools - Complete Developer Utilities Catalog",
-  description: "Browse all ToolTeeno's free developer tools: QR Code Generator, JSON Formatter, Base64 Converter, Password Generator, URL Encoder/Decoder, Color Picker, and Markdown Preview. Fast, secure, and completely free.",
+  description: "Browse all ToolTeeno's free developer tools: QR Code Generator, JSON Formatter, Base64 Converter, Password Generator, URL Encoder/Decoder, Color Picker, Markdown Preview, JSON to TOML Converter, and JSON to TOON Converter. Fast, secure, and completely free.",
   keywords: ["all developer tools", "utilities catalog", "free tools list", "online tools directory", "developer resources"],
   openGraph: {
     title: "All Tools - Complete Developer Utilities Catalog",
@@ -22,13 +22,15 @@ export const metadata: Metadata = {
 };
 
 // Icon mapping for easy component lookup
-const IconMap = { Palette, Code, Link: LinkIcon, Lock, FileText, Binary }; // Use LinkIcon to avoid conflict with Next.js Link
+const IconMap = { Palette, Code, Link: LinkIcon, Lock, FileText, Binary, FileJson }; // Use LinkIcon to avoid conflict with Next.js Link
 
 // Tool data mirroring the initial list, now including the slug for routing
 const allTools = [
-    { slug: 'qr-code-generator', name: 'QR Code Generator', icon: 'Zap', description: 'Generate QR codes for URLs, text, and more.' },
+  { slug: 'qr-code-generator', name: 'QR Code Generator', icon: 'Zap', description: 'Generate QR codes for URLs, text, and more.' },
   { slug: 'color-picker', name: 'Color Picker', icon: 'Palette', description: 'Instantly pick a color and get HEX/RGB values.' },
   { slug: 'json-formatter', name: 'JSON Formatter', icon: 'Code', description: 'Beautify and validate JSON data instantly.' },
+  { slug: 'json-to-toml', name: 'JSON to TOML Converter', icon: 'FileJson', description: 'Convert between JSON and TOML formats bidirectionally.' },
+  { slug: 'json-to-toon', name: 'JSON to TOON Converter', icon: 'Zap', description: 'Reduce LLM token usage by ~50% with compact TOON format.' },
   { slug: 'url-encoder-decoder', name: 'URL Encoder/Decoder', icon: 'Link', description: 'Encode or decode URLs for safe transmission.' },
   { slug: 'password-generator', name: 'Password Generator', icon: 'Lock', description: 'Create strong, random passwords.' },
   { slug: 'markdown-preview', name: 'Markdown Preview', icon: 'FileText', description: 'See your Markdown rendered in real-time.' },

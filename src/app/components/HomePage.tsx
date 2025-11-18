@@ -3,16 +3,18 @@
 import React, { useRef, useState } from 'react';
 import Link from 'next/link'; // Import Next.js Link
 // Mock imports for demonstration.
-import { Palette, Code, Link as LinkIcon, Lock, FileText, Binary, ChevronLeft, ChevronRight, Zap, Search } from 'lucide-react';
+import { Palette, Code, Link as LinkIcon, Lock, FileText, Binary, ChevronLeft, ChevronRight, Zap, Search, FileJson } from 'lucide-react';
 
 // Icon mapping for easy component lookup
-const IconMap = { Palette, Code, Link: LinkIcon, Lock, FileText, Binary }; // Use LinkIcon to avoid conflict with Next.js Link
+const IconMap = { Palette, Code, Link: LinkIcon, Lock, FileText, Binary, FileJson }; // Use LinkIcon to avoid conflict with Next.js Link
 
 // Sample data for the tools
 const initialTools = [
-    { slug: 'qr-code-generator', name: 'QR Code Generator', icon: 'Zap', description: 'Generate QR codes for URLs, text, and more.' },
+  { slug: 'qr-code-generator', name: 'QR Code Generator', icon: 'Zap', description: 'Generate QR codes for URLs, text, and more.' },
   { slug: 'color-picker', name: 'Color Picker', icon: 'Palette', description: 'Extract colors from any image or screen.' },
   { slug: 'json-formatter', name: 'JSON Formatter', icon: 'Code', description: 'Beautify and validate JSON data instantly.' },
+  { slug: 'json-to-toml', name: 'JSON to TOML Converter', icon: 'FileJson', description: 'Convert between JSON and TOML formats bidirectionally.' },
+  { slug: 'json-to-toon', name: 'JSON to TOON Converter', icon: 'Zap', description: 'Reduce LLM token usage by ~50% with compact TOON format.' },
   { slug: 'url-encoder-decoder', name: 'URL Encoder/Decoder', icon: 'Link', description: 'Encode or decode URLs for safe transmission.' },
   { slug: 'password-generator', name: 'Password Generator', icon: 'Lock', description: 'Create strong, random passwords.' },
   { slug: 'markdown-preview', name: 'Markdown Preview', icon: 'FileText', description: 'See your Markdown rendered in real-time.' },
