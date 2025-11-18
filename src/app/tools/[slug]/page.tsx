@@ -14,6 +14,15 @@ import Base64ConverterTool from "@/app/components/Base64ConverterTool";
 import QrCodeGeneratorTool from "@/app/components/QrCodeGeneratorTool";
 import JsonToTomlTool from "@/app/components/JsonToTomlTool";
 import JsonToToonTool from "@/app/components/JsonToToonTool";
+import SvgOptimizerTool from "@/app/components/SvgOptimizerTool";
+import RegexTesterTool from "@/app/components/RegexTesterTool";
+import JwtDebuggerTool from "@/app/components/JwtDebuggerTool";
+import YamlConverterTool from "@/app/components/YamlConverterTool";
+import UnixTimestampTool from "@/app/components/UnixTimestampTool";
+import HtmlFormatterTool from "@/app/components/HtmlFormatterTool";
+import TextDiffTool from "@/app/components/TextDiffTool";
+import HashGeneratorTool from "@/app/components/HashGeneratorTool";
+import ColorPaletteGeneratorTool from "@/app/components/ColorPaletteGeneratorTool";
 
 // --- Tool Data and Static Generation ---
 type ToolData = {
@@ -68,6 +77,51 @@ const toolsData: Record<string, ToolData> = {
     component: Base64ConverterTool,
     description: "Encode and decode Base64 strings.",
   },
+  "svg-optimizer": {
+    name: "SVG Optimizer",
+    component: SvgOptimizerTool,
+    description: "Reduce SVG file size by removing metadata and optimizing code.",
+  },
+  "regex-tester": {
+    name: "Regex Tester",
+    component: RegexTesterTool,
+    description: "Test and debug regular expressions with real-time matching.",
+  },
+  "jwt-debugger": {
+    name: "JWT Debugger",
+    component: JwtDebuggerTool,
+    description: "Decode and inspect JSON Web Tokens (JWT) with signature validation.",
+  },
+  "yaml-converter": {
+    name: "YAML Converter",
+    component: YamlConverterTool,
+    description: "Convert between JSON, YAML, and XML formats.",
+  },
+  "unix-timestamp": {
+    name: "Unix Timestamp Converter",
+    component: UnixTimestampTool,
+    description: "Convert between human-readable date/time and Unix timestamps.",
+  },
+  "html-formatter": {
+    name: "HTML Formatter",
+    component: HtmlFormatterTool,
+    description: "Format or compress HTML code for readability or production.",
+  },
+  "text-diff": {
+    name: "Text Diff Checker",
+    component: TextDiffTool,
+    description: "Compare two pieces of text and highlight the differences.",
+  },
+  "hash-generator": {
+    name: "Hash Generator",
+    component: HashGeneratorTool,
+    description: "Generate cryptographic hashes (MD5, SHA-256, etc.) from text.",
+  },
+  "color-palette-generator": {
+    name: "Color Palette Generator",
+    component: ColorPaletteGeneratorTool,
+    description: "Generate harmonious color palettes from a single color.",
+  },
 };
 
 const availableSlugs = Object.keys(toolsData);
@@ -108,6 +162,15 @@ export async function generateMetadata({
     "password-generator": "Generate strong, secure passwords with customizable length and character sets. Create random passwords with uppercase, lowercase, numbers, and special characters. Free password generator.",
     "markdown-preview": "Real-time Markdown editor and preview tool. Write Markdown and see instant HTML rendering. Supports GitHub Flavored Markdown, syntax highlighting, and tables. Free online Markdown editor.",
     "base64-converter": "Encode and decode Base64 strings online. Convert text, images, and files to Base64 format. Supports encoding and decoding with instant results. Free Base64 converter tool.",
+    "svg-optimizer": "Optimize SVG files to reduce size by 30-70%. Remove unnecessary metadata, comments, and editor-specific code. Minify colors, round decimals, and compress whitespace. Perfect for web performance and Lighthouse scores. Free SVG optimization tool.",
+    "regex-tester": "Test and debug regular expressions online with real-time matching. Visualize matches, capture groups, and pattern behavior. Supports all JavaScript regex flags (global, case-insensitive, multiline, dotall, unicode, sticky). Perfect for learning regex, validating patterns, and debugging complex expressions. Free regex testing tool.",
+    "jwt-debugger": "Decode and inspect JSON Web Tokens (JWT) online. View header, payload, and signature with automatic base64url decoding. Verify JWT signatures with HMAC algorithms (HS256, HS384, HS512). Check token expiration, issued at, and not before timestamps. Perfect for debugging authentication, inspecting claims, and learning JWT structure. Free JWT decoder and validator.",
+    "yaml-converter": "Convert between JSON, YAML, and XML formats with bidirectional support. Transform configuration files, API responses, and data structures between formats. Supports nested objects, arrays, and all data types. Perfect for Kubernetes configs, CI/CD pipelines, OpenAPI specs, and data migration. Instant conversion with pretty formatting. Free format converter tool.",
+    "unix-timestamp": "Convert between Unix timestamps and human-readable dates online. Supports seconds and milliseconds formats. Convert timestamps to ISO 8601, UTC, and localized date formats. Extract date components (year, month, day, hour, minute, second). Timezone support for accurate conversions. Perfect for debugging APIs, scheduling tasks, and time calculations. Free timestamp converter.",
+    "html-formatter": "Format and minify HTML code online. Prettify messy HTML with proper indentation or compress for production deployment. Remove comments, sort attributes, and customize indent size. Perfect for cleaning WYSIWYG editor output, standardizing code formatting, and optimizing HTML for faster page loads. Free HTML beautifier and compressor.",
+    "text-diff": "Compare two text files and highlight differences online. Character, word, and line-by-line comparison modes. Unified and side-by-side diff views. Calculate similarity percentage and change statistics. Perfect for version control, code review, document comparison, and plagiarism detection. Free text comparison tool.",
+    "hash-generator": "Generate cryptographic hashes online from any text. Support for MD5, SHA-1, SHA-256, SHA-384, SHA-512, and RIPEMD-160 algorithms. Instant hash generation with copy-to-clipboard functionality. Perfect for password hashing, data integrity verification, checksums, and security audits. Free hash generator tool.",
+    "color-palette-generator": "Generate harmonious color palettes from a single color online. Support for monochromatic, analogous, complementary, triadic, tetradic, split-complementary, and double-complementary schemes. Export to CSS, SCSS, or JSON. Perfect for web design, UI/UX, branding, and creating cohesive color schemes. Free color palette generator.",
   };
 
   const seoKeywords: Record<string, string[]> = {
@@ -120,6 +183,15 @@ export async function generateMetadata({
     "password-generator": ["password generator", "strong password", "random password", "secure password", "password creator", "generate password"],
     "markdown-preview": ["markdown editor", "markdown preview", "markdown to html", "md editor", "markdown viewer", "github markdown"],
     "base64-converter": ["base64 encoder", "base64 decoder", "base64 converter", "encode base64", "decode base64", "base64 tool"],
+    "svg-optimizer": ["svg optimizer", "optimize svg", "compress svg", "minify svg", "svg file size", "reduce svg", "svg cleaner", "svg compression"],
+    "regex-tester": ["regex tester", "regular expression tester", "regex validator", "test regex", "regex debugger", "pattern matcher", "regex playground", "regex tool"],
+    "jwt-debugger": ["jwt debugger", "jwt decoder", "json web token decoder", "jwt validator", "jwt inspector", "decode jwt", "jwt parser", "jwt tool"],
+    "yaml-converter": ["yaml converter", "json to yaml", "yaml to json", "xml converter", "json to xml", "yaml to xml", "format converter", "config converter"],
+    "unix-timestamp": ["unix timestamp converter", "timestamp to date", "date to timestamp", "epoch converter", "time converter", "unix time", "timestamp decoder", "epoch time"],
+    "html-formatter": ["html formatter", "html beautifier", "html minifier", "prettify html", "compress html", "html optimizer", "format html", "minify html"],
+    "text-diff": ["text diff", "compare text", "diff checker", "text comparison", "compare files", "diff tool", "text difference", "compare documents"],
+    "hash-generator": ["hash generator", "md5 generator", "sha256 generator", "sha512 generator", "cryptographic hash", "hash calculator", "checksum generator", "hash tool"],
+    "color-palette-generator": ["color palette generator", "color scheme generator", "harmonious colors", "complementary colors", "analogous colors", "triadic colors", "color harmony", "palette creator"],
   };
 
   const description = seoDescriptions[slug] || toolDescription;

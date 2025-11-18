@@ -42,6 +42,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'password-generator',
     'markdown-preview',
     'base64-converter',
+    'svg-optimizer',
+    'regex-tester',
+    'jwt-debugger',
+    'yaml-converter',
+    'unix-timestamp',
+    'html-formatter',
+    'text-diff',
   ];
 
   const toolPages = tools.map((slug) => ({
