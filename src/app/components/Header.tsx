@@ -21,6 +21,7 @@ export default function Header() {
         <Link href="/" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Home</Link>
         <Link href="/tools" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">All Tools</Link>
         <Link href="/about" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">About</Link>
+        <Link href="/mateen" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Mateen</Link>
         
         {/* Theme Toggle Button */}
         <button
