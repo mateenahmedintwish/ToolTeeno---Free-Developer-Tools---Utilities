@@ -115,7 +115,7 @@ function toYAML(obj: any, indent = 0): string {
 // Simple XML parser
 function parseXML(xml: string): any {
   // Remove XML declaration and comments
-  xml = xml.replace(/<\?xml.*?\?>/g, '').replace(/<!--.*?-->/gs, '').trim();
+  xml = xml.replace(/<\?xml.*?\?>/g, '').replace(/<!--.*?-->/g, '').trim();
   
   const result: any = {};
   
